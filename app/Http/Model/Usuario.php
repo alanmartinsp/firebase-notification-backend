@@ -2,9 +2,9 @@
 
 namespace App\Http\Model;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Http\Model\MyModel;
 
-class Usuario extends Model
+class Usuario extends MyModel
 {
     protected $table = "usuario";
     protected $primaryKey = "usu_id";

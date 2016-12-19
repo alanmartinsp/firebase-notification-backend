@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Notificacao;
 
 use App\Http\Requests\Request;
 use Illuminate\Contracts\Validation\Validator;
-use Response;
 
-class GravarUsuarioRequest extends Request
+class EnviarNotificacaoTodosRequest extends Request
 {
 
     public function authorize()
@@ -17,7 +16,7 @@ class GravarUsuarioRequest extends Request
     public function rules()
     {
         return [
-            'usu_token' => 'required'
+            'mensagem' => 'required'
         ];
     }
 
@@ -26,5 +25,5 @@ class GravarUsuarioRequest extends Request
         $message = $validator->getMessageBag();
         abort(401, json_encode($message));
     }
-    
+
 }
