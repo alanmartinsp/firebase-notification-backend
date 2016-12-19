@@ -1,16 +1,11 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of Request
- *
- * @author Alan
- */
-class Request
+namespace App\Common\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class Request extends FormRequest
 {
-    //put your code here
+
+
 }
