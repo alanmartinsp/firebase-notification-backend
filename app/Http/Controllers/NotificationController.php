@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Common\Controllers\Controller;
 use App\Http\Requests\Notificacao\EnviarNotificacaoTodosRequest;
 use App\Http\Model\Notificacao;
 use App\Http\Model\Usuario;
