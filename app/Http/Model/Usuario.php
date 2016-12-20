@@ -2,12 +2,13 @@
 
 namespace App\Http\Model;
 
-use App\Http\Model\MyModel;
+use App\Common\Models\EntityModel;
 
-class Usuario extends MyModel
+class Usuario extends EntityModel
 {
-    protected $table = "usuario";
+    protected $table      = "usuario";
     protected $primaryKey = "usu_id";
-    protected $fillable = ['usu_token'];
-    public $timestamps = false;
+    protected $fillable   = ['usu_token'];
+    public $timestamps    = false;
+
 }

@@ -2,28 +2,15 @@
 
 namespace App\Http\Requests\Notificacao;
 
-use App\Http\Requests\Request;
-use Illuminate\Contracts\Validation\Validator;
+use App\Common\Requests\Request;
 
 class EnviarNotificacaoTodosRequest extends Request
 {
 
-    public function authorize()
-    {
-        return true;
-    }
-
-    public function rules()
+    public function definirValidacao()
     {
         return [
             'mensagem' => 'required'
         ];
     }
-
-    public function failedValidation(Validator $validator)
-    {
-        $message = $validator->getMessageBag();
-        abort(401, json_encode($message));
-    }
-
 }

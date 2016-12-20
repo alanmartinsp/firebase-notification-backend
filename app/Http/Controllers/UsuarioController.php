@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\GravarUsuarioRequest;
+use App\Common\Controller\Controller;
+use App\Http\Requests\Usuario\GravarUsuarioRequest;
 use \App\Http\Model\Usuario;
+use App\Http\Requests\Usuario\ObterUsuarioRequest;
 
 class UsuarioController extends Controller
 {
@@ -18,8 +19,15 @@ class UsuarioController extends Controller
     {
         $this->usuario = new Usuario();
     }
+
+    public function index(ObterUsuarioRequest $request)
+    {
+        return $this->usuario->obterTodos();
+    }
+    
     public function store(GravarUsuarioRequest $request)
     {
         $this->usuario->create($request->only(['usu_token']));
     }
+
 }
