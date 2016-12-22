@@ -2,22 +2,28 @@
 
 namespace App\Http\Model\Login;
 
+use App\Http\Model\Usuario;
+use JWTAuth;
 use Response;
 
 class Login
 {
+    protected $usuario;
+
+    public function __construct()
+    {
+        return $this->usuario = new Usuario();
+    }
 
     public function efetuarLogin($login, $senha)
     {
 
-        //Cruar validação para o token
-        $token = null;
+        $usuario = $this->usuario->verificarUsuarioParaLogar($login, $senha);
 
-        if(empty($token)){
-            return Response::json(['erros' => 'Usuário ou senha incorretos'], 401);
+        if (empty($usuario)) {
+            return Response::json([ 'error' => 'Usuário não encontrado'], 401);
         }
 
-        return Response::json(['data' => [ 'token' => $token] ], 202);
-
+        return Response::json([ 'token' => JWTAuth::fromUser($usuario)]);
     }
 }

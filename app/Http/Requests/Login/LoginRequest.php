@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Notificacao;
+namespace App\Http\Requests\Login;
 
 use App\Common\Requests\Request;
 
