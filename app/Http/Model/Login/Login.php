@@ -2,28 +2,45 @@
 
 namespace App\Http\Model\Login;
 
-use App\Http\Model\Usuario;
-use JWTAuth;
-use Response;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Login
+class Login extends Authenticatable
 {
-    protected $usuario;
 
-    public function __construct()
+    use Notifiable;
+    protected $table      = "usuarios";
+    protected $primaryKey = "usu_id";
+    protected $fillable   = [ 'usu_senha', 'usu_login'];
+    protected $hidden     = [ 'usu_senha'];
+
+    public function getAuthIdentifierName()
     {
-        return $this->usuario = new Usuario();
+        return 'usu_login';
     }
 
-    public function efetuarLogin($login, $senha)
+    public function getAuthIdentifier()
     {
+        return $this->usu_login;
+    }
 
-        $usuario = $this->usuario->verificarUsuarioParaLogar($login, $senha);
+    public function getAuthPassword()
+    {
+        return $this->usu_senha;
+    }
 
-        if (empty($usuario)) {
-            return Response::json([ 'error' => 'Usuário não encontrado'], 401);
-        }
+    public function getRememberToken()
+    {
+        return $this->{$this->getRememberTokenName()};
+    }
 
-        return Response::json([ 'token' => JWTAuth::fromUser($usuario)]);
+    public function setRememberToken($value)
+    {
+        $this->{$this->getRememberTokenName()} = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
     }
 }
