@@ -24,10 +24,9 @@ class UsuarioController extends Controller
     {
         return $this->usuario->obterTodos();
     }
-    
+
     public function store(GravarUsuarioRequest $request)
     {
-        $this->usuario->create($request->only(['usu_token']));
+        $this->usuario->cadastrar($request->all());
     }
-
 }
