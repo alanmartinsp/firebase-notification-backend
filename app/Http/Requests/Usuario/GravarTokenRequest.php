@@ -10,7 +10,7 @@ class GravarTokenRequest extends Request
     public function definirValidacao()
     {
         return [
-            'token' => 'required'
+            'usu_token' => 'required'
         ];
     }
 }
