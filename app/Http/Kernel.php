@@ -35,6 +35,10 @@ class Kernel extends HttpKernel
         'autenticacao' => [
             \App\Http\Middleware\Autenticacao::class
         ],
+
+        'token_usuario' => [
+            \App\Http\Middleware\TokenUsuario::class
+        ],
         
         'api' => [
             'throttle:60,1',
@@ -50,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'token_usuario' => \App\Http\Middleware\TokenUsuario::class,
         'autenticacao' => \App\Http\Middleware\Autenticacao::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
