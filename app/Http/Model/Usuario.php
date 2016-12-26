@@ -22,4 +22,5 @@ class Usuario extends EntityModel
 
         return $query->where("usu_login", $login)->where("usu_senha", $senha)->first();
     }
+    
 }

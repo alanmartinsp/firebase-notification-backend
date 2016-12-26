@@ -5,6 +5,7 @@ Route::group(['middleware' => ['autenticacao']],
     function() {
 
     Route::resource('/user', 'UsuarioController');
+    Route::post('/usuario/alterartoken', 'Usuario\UsuarioController@alterarTokenUsuarioLogado');
     Route::post('/notificacao', 'NotificationController@enviarParaTodos');
 });
 
