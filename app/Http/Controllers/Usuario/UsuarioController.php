@@ -20,7 +20,12 @@ class UsuarioController extends Controller
 
     public function alterarTokenUsuarioLogado(AlterarTokenUsuarioLogado $request)
     {
-        return $this->usuarioToken->alterarTokenUsuarioLogado($request->get('token_usu'),
+        $token = str_replace("}", "",
+            str_replace("Bearer {", "", $request->header('Authorization')));
+        
+        $user  = \JWTAuth::parseToken()->authenticate($token);
+        
+        return $this->usuarioToken->alterarTokenUsuarioLogado($user->usu_id,
                 $request->get('token'));
     }
 }

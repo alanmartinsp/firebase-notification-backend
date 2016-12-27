@@ -10,7 +10,6 @@ class AlterarTokenUsuarioLogado extends Request
     public function definirValidacao()
     {
         return [
-            'token_usu',
             'token'
         ];
     }
