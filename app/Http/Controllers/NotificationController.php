@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Common\Controllers\Controller;
+use App\Common\Controller\Controller;
 use App\Http\Requests\Notificacao\EnviarNotificacaoTodosRequest;
 use App\Http\Model\Notificacao;
-use App\Http\Model\Usuario;
 
 class NotificationController extends Controller
 {
-    /**
-     * @var App\Http\Model\Usuario;
-     */
-    protected $user;
-
     /**
      * @var App\Http\Model\Notificacao
      */
@@ -21,7 +15,6 @@ class NotificationController extends Controller
 
     public function __construct()
     {
-        $this->user        = new Usuario();
         $this->notificacao = new Notificacao();
     }
 

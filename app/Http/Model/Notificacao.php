@@ -2,7 +2,7 @@
 
 namespace App\Http\Model;
 
-use App\Http\Model\Usuario;
+use App\Http\Model\Usuario\TokenUsuario;
 use App\Http\Model\ConfiguracaoDaNotificacao;
 
 class Notificacao
@@ -10,24 +10,24 @@ class Notificacao
     /**
      * @var App\Http\Model\Usuario
      */
-    protected $usuario;
+    protected $tokens;
     protected $config;
 
     public function __construct()
     {
-        $this->usuario = new Usuario();
+        $this->tokens = new TokenUsuario();
         $this->config  = new ConfiguracaoDaNotificacao();
     }
 
     public function enviarParaTodos($mensagem)
     {
-        $usuarios = $this->usuario->obterTodos();
-
-        if (empty($usuarios)) {
+        $tokensUsuarios = $this->tokens->obterTodos();
+        
+        if (empty($tokensUsuarios)) {
             return "Nenhum usuário";
         }
 
-        $tokens = array_column($usuarios->toArray(), "usu_token");
+        $tokens = array_column($tokensUsuarios->toArray(), "token");
 
         return $this->config->enviarNotificacaoParaFirebase($tokens,
                 ["message" => $mensagem]);
